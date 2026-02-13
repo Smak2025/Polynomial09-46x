@@ -1,12 +1,10 @@
 package ru.gr0946x;
 
-import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
 import java.util.TreeMap;
 
 public class Polynomial {
-    private Map<Integer, Double> coeffs;
+    private final Map<Integer, Double> coeffs;
 
     public Polynomial(){
         coeffs = new TreeMap<>(
