@@ -8,7 +8,7 @@ public class Polynomial {
 
     public Polynomial(){
         coeffs = new TreeMap<>(
-                (k1, k2) -> -k1.compareTo(k2)
+            (k1, k2) -> -k1.compareTo(k2)
         );
         coeffs.put(0, 0.0);
     }
