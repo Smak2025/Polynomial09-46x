@@ -1,14 +1,19 @@
 package ru.gr0946x;
 
+import java.util.Comparator;
 import java.util.Map;
 import java.util.TreeMap;
-
 public class Polynomial {
     private final Map<Integer, Double> coeffs;
 
+    public Map<Integer, Double> getCoeffs(){
+        return new TreeMap<>(coeffs);
+    }
+
+
     public Polynomial(){
         coeffs = new TreeMap<>(
-            (k1, k2) -> -k1.compareTo(k2)
+            (o1, o2) -> o2.compareTo(o1)
         );
         coeffs.put(0, 0.0);
     }
@@ -31,7 +36,7 @@ public class Polynomial {
     private void filterCoeffs(){
         coeffs.entrySet().removeIf(
                 entry ->
-                        entry.getValue() == 0
+                        entry.getValue() == 0.0
                                 ||entry.getKey() < 0
         );
         if (coeffs.isEmpty()) coeffs.put(0, 0.0);
@@ -59,5 +64,40 @@ public class Polynomial {
             i++;
         }
         return sb.toString();
+    }
+
+    public Polynomial plus(Polynomial other){
+        var newCoeffs = new TreeMap<Integer, Double>(coeffs);
+        for (var p:other.coeffs.entrySet()) {
+            newCoeffs.put(p.getKey(), newCoeffs.getOrDefault(p.getKey(), 0.0)+ p.getValue());
+
+        }
+        return new Polynomial(newCoeffs);
+    }
+
+    public  void plusAssign(Polynomial other){
+        for (var p: other.coeffs.entrySet()) {
+            this.coeffs.put(p.getKey(), coeffs.getOrDefault(p.getKey(), 0.0) + p.getValue());
+        }
+    }
+
+    public Polynomial minus(Polynomial other){
+        var newCoeffs = new TreeMap<Integer, Double>(coeffs);
+        for (var p:other.coeffs.entrySet()) {
+            newCoeffs.put(p.getKey(), newCoeffs.getOrDefault(p.getKey(), 0.0) - p.getValue());
+        }
+        return new Polynomial(newCoeffs);
+    }
+
+    public Polynomial times(double v){
+        var newCoeffs = new TreeMap<Integer, Double>();
+        for (var p: coeffs.entrySet()) {
+            newCoeffs.put(p.getKey(), p.getValue() * v);
+        }
+        return new Polynomial(newCoeffs);
+    }
+
+    public double invoke(double x){
+        return 0.0;
     }
 }
