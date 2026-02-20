@@ -1,6 +1,5 @@
 package ru.gr0946x;
 
-import java.util.Comparator;
 import java.util.Map;
 import java.util.TreeMap;
 public class Polynomial {
@@ -75,10 +74,11 @@ public class Polynomial {
         return new Polynomial(newCoeffs);
     }
 
-    public  void plusAssign(Polynomial other){
+    public void plusAssign(Polynomial other){
         for (var p: other.coeffs.entrySet()) {
             this.coeffs.put(p.getKey(), coeffs.getOrDefault(p.getKey(), 0.0) + p.getValue());
         }
+        filterCoeffs();
     }
 
     public Polynomial minus(Polynomial other){
