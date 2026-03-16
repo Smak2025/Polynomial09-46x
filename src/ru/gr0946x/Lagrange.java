@@ -6,7 +6,7 @@ import java.util.Map;
 
 public class Lagrange extends Polynomial{
 
-    private Map<Double, Double> points;
+    private final Map<Double, Double> points;
     public Lagrange(Map<Double, Double> points){
         this.points = new LinkedHashMap<>(points);
         createLagrange();
