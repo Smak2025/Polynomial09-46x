@@ -3,7 +3,7 @@ package ru.gr0946x;
 import java.util.Map;
 import java.util.TreeMap;
 public class Polynomial {
-    private final Map<Integer, Double> coeffs;
+    protected final Map<Integer, Double> coeffs;
 
     public Map<Integer, Double> getCoeffs(){
         return new TreeMap<>(coeffs);

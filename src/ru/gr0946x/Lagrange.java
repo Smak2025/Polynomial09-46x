@@ -1,13 +1,14 @@
 package ru.gr0946x;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class Lagrange extends Polynomial{
 
     private Map<Double, Double> points;
     public Lagrange(Map<Double, Double> points){
-        this.points = new HashMap<>(points);
+        this.points = new LinkedHashMap<>(points);
         createLagrange();
     }
 
